@@ -11,9 +11,9 @@
     - **Floorplan:** Select "SAPUI5 Application".
     - **Data Source:** Pick "None" for now (you can connect to a service later).
     - **View Name:** Enter a name like `Main`.
-    - **Module Name (Project Folder Name):** Example: `MyFirstUi5App`.
+    - **Module Name (Project Folder Name):** Example: `myfirstui5app`.
     - **Application Title:** Example: "My First App".
-    - **Application Namespace:** Use a unique namespace like `com.mycompany.myfirstui5app`.
+    - **Application Namespace:** Use a unique namespace like `com.mycompany`.
     - **Directory:** Choose where to save your project.
 
 🎉 The generator will scaffold your project with all the necessary files and folders!
@@ -41,6 +41,7 @@ MyFirstUi5App/
 ├── node_modules/       # Installed dependencies (managed by npm)
 ├── webapp/             # Main application code
 │   ├── controller/     # JavaScript logic
+│   │   └── App.controller.js
 │   │   └── Main.controller.js
 │   ├── css/            # Custom styles
 │   │   └── style.css
@@ -49,6 +50,7 @@ MyFirstUi5App/
 │   ├── model/          # Data models
 │   │   └── models.js
 │   ├── view/           # XML views (UI layout)
+│   │   └── App.view.xml
 │   │   └── Main.view.xml
 │   ├── Component.js    # Application entry point
 │   ├── index.html      # Bootstrap file
@@ -100,18 +102,19 @@ SAPUI5 follows the **Model-View-Controller (MVC)** design pattern, which ensures
 File: `webapp/view/Main.view.xml`
 
 ```xml
-<mvc:View
-     controllerName="com.mycompany.myfirstui5app.controller.Main"
-     xmlns:mvc="sap.ui.core.mvc"
-     displayBlock="true"
-     xmlns="sap.m">
+<mvc:View controllerName="com.mycompany.myfirstui5app.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
 
-     <Page id="page" title="{i18n>title}">
-          <content>
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox class="sapUiSmallMargin">
                 <Text text="Hello World from my View!" />
-                <Button text="Click Me!" press=".onPress" />
-          </content>
-     </Page>
+                <Button text="Click me!" press="onButtonPress" />
+            </VBox> 
+        </content>
+    </Page>
 </mvc:View>
 ```
 
@@ -141,7 +144,7 @@ sap.ui.define([
                 console.log("Main Controller Initialized");
           },
 
-          onPress: function () {
+          onButtonPress: function () {
                 MessageToast.show("Hello from the Controller!");
           }
      });

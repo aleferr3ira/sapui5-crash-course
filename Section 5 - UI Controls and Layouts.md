@@ -1,4 +1,4 @@
-## 🌟 Section 5: UI Controls and Layouts
+## Section 5: UI Controls and Layouts
 
 ### 🚀 Explore the Power of SAPUI5 UI Controls (`sap.m` Library)
 
@@ -6,21 +6,113 @@ The `sap.m` library is your gateway to a treasure trove of responsive, versatile
 
 #### ✨ **Essential Input and Display Controls**
 - **`sap.m.Text`**: Display static, read-only text effortlessly.
+    ```xml
+    <Text text="Hello, SAPUI5!" />
+    ```
 - **`sap.m.Label`**: Add accessible labels to your input fields.
+    ```xml
+    <Label text="Enter your name:" labelFor="inputName" />
+    <Input id="inputName" />
+    ```
 - **`sap.m.Button`**: Trigger actions with a simple click.
+    ```xml
+    <Button text="Click Me" press="onButtonPress" />
+    ```
 - **`sap.m.Input`**: Capture user input with style and flexibility.
+    ```xml
+    <Input placeholder="Type something..." />
+    ```
 - **`sap.m.CheckBox`**: Enable boolean choices with a single click.
+    ```xml
+    <CheckBox text="I agree to the terms and conditions" selected="false" />
+    ```
 - **`sap.m.Select`**: Offer dropdown options for quick selection.
+    ```xml
+    <Select>
+        <items>
+            <core:Item key="1" text="Option 1" />
+            <core:Item key="2" text="Option 2" />
+        </items>
+    </Select>
+    ```
 - **`sap.m.DatePicker`**: Let users pick dates with an intuitive calendar pop-up.
+    ```xml
+    <DatePicker value="2023-01-01" />
+    ```
 
 #### 📋 **Data Display: Lists and Tables**
-- **`sap.m.List`**: Create dynamic lists with customizable layouts (`StandardListItem`, `CustomListItem`) for simpler data display.
-- **`sap.m.Table`**: Showcase structured, tabular data with advanced features like sorting, filtering, and column resizing—perfect for complex datasets.
+- **`sap.m.List`**: Create dynamic lists with customizable layouts.
+    ```xml
+    <List>
+        <items>
+            <StandardListItem title="Item 1" description="Description 1" />
+            <StandardListItem title="Item 2" description="Description 2" />
+        </items>
+    </List>
+    ```
+- **`sap.m.Table`**: Showcase structured, tabular data.
+    ```xml
+    <Table>
+        <columns>
+            <Column>
+                <Text text="Name" />
+            </Column>
+            <Column>
+                <Text text="Age" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="John Doe" />
+                    <Text text="30" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="Jane Smith" />
+                    <Text text="25" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    ```
 
 #### 🏗️ **Layout and Structural Controls**
-- **`sap.m.Page`**: Build the foundation of your app with a structured container for headers, content, and footers.
-- **`sap.m.Dialog`**: Grab user attention with focused pop-ups for messages or interactions.
-- **`sap.m.Bar`**: Add toolbars to your headers or footers for seamless navigation and actions.
+- **`sap.m.Page`**: Build the foundation of your app with a structured container.
+    ```xml
+    <Page title="My App">
+        <content>
+            <Text text="Welcome to SAPUI5!" />
+        </content>
+    </Page>
+    ```
+- **`sap.m.Dialog`**: Grab user attention with focused pop-ups.
+    ```xml
+    <Dialog title="Confirmation" type="Message">
+        <content>
+            <Text text="Are you sure you want to proceed?" />
+        </content>
+        <buttons>
+            <Button text="Yes" press="onConfirm" />
+            <Button text="No" press="onCancel" />
+        </buttons>
+    </Dialog>
+    ```
+- **`sap.m.Bar`**: Add toolbars to your headers or footers.
+    ```xml
+    <Bar>
+        <contentLeft>
+            <Button text="Back" press="onBack" />
+        </contentLeft>
+        <contentMiddle>
+            <Title text="Page Title" />
+        </contentMiddle>
+        <contentRight>
+            <Button text="Save" press="onSave" />
+        </contentRight>
+    </Bar>
+    ```
 
 #### 🌐 **And So Much More!**
 SAPUI5 offers an expansive library of controls, from charts (`sap.viz`) to icons (`sap.ui.core.Icon`) and layout panels (`sap.m.Panel`). The possibilities are endless!
@@ -36,10 +128,44 @@ Creating a responsive UI is not just a feature—it's a necessity. SAPUI5 makes 
 #### 🛠️ **Key Strategies for Responsive Design**
 1. **Leverage `sap.m` Controls**: These controls are inherently responsive, adapting seamlessly to different devices.
 2. **Use Layout Containers**:
-    - **`sap.m.VBox` / `sap.m.HBox`**: Stack controls vertically or horizontally with ease.
-    - **`sap.m.FlexBox`**: Harness the power of CSS Flexbox for flexible alignment, spacing, and wrapping.
-    - **`sap.ui.layout.Grid`**: Create complex, two-dimensional layouts with precision.
-    - **`sap.ui.layout.form.SimpleForm`**: Build responsive forms that automatically adjust labels and fields based on screen size.
+        - **`sap.m.VBox` / `sap.m.HBox`**: Stack controls vertically or horizontally.
+            ```xml
+            <VBox>
+                <items>
+                    <Text text="Item 1" />
+                    <Text text="Item 2" />
+                </items>
+            </VBox>
+            ```
+        - **`sap.m.FlexBox`**: Harness the power of CSS Flexbox.
+            ```xml
+            <FlexBox direction="Row" justifyContent="SpaceBetween">
+                <items>
+                    <Button text="Left" />
+                    <Button text="Right" />
+                </items>
+            </FlexBox>
+            ```
+        - **`sap.ui.layout.Grid`**: Create complex, two-dimensional layouts.
+            ```xml
+            <Grid defaultSpan="L6 M6 S12">
+                <content>
+                    <Text text="Grid Item 1" />
+                    <Text text="Grid Item 2" />
+                </content>
+            </Grid>
+            ```
+        - **`sap.ui.layout.form.SimpleForm`**: Build responsive forms.
+            ```xml
+            <SimpleForm>
+                <content>
+                    <Label text="Name" />
+                    <Input />
+                    <Label text="Email" />
+                    <Input />
+                </content>
+            </SimpleForm>
+            ```
 3. **Avoid Fixed Widths**: Embrace percentage-based widths or let layout containers handle spacing dynamically.
 4. **Test Across Devices**: Use browser developer tools and physical devices to ensure your app looks great everywhere.
 5. **Follow Fiori Design Guidelines**: Stick to SAP’s best practices for responsive layouts to deliver a consistent user experience.
@@ -57,8 +183,16 @@ SAP provides beautiful, ready-to-use themes like **SAP Quartz Light/Dark** and t
 
 #### 🎨 **Custom CSS for Fine-Tuning**
 - Add your custom styles in `webapp/css/style.css`.
+    ```css
+    .myCustomClassName {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    ```
 - Apply styles to controls using `addStyleClass("myCustomClassName")` in JavaScript or `class="myCustomClassName"` in XML views.
-- Use custom CSS sparingly to maintain compatibility with future UI5 updates.
+    ```xml
+    <Button text="Styled Button" class="myCustomClassName" />
+    ```
 
 #### 🛠️ **UI Theme Designer**
 For corporate branding, the **UI Theme Designer** lets you customize colors, fonts, and logos. This tool generates a complete theme library for consistent branding across applications.

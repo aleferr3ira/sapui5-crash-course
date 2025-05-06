@@ -104,14 +104,12 @@ File: `webapp/view/Main.view.xml`
 ```xml
 <mvc:View controllerName="com.mycompany.myfirstui5app.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    displayBlock="true">
-
+    xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content>
+       <content>
             <VBox class="sapUiSmallMargin">
                 <Text text="Hello World from my View!" />
-                <Button text="Click me!" press="onButtonPress" />
+                <Button id="myButton" text="Click me!" press="onButtonPress" />
             </VBox> 
         </content>
     </Page>
@@ -134,28 +132,42 @@ File: `webapp/controller/Main.controller.js`
 
 ```javascript
 sap.ui.define([
-     "sap/ui/core/mvc/Controller",
-     "sap/m/MessageToast"
-], function (Controller, MessageToast) {
-     "use strict";
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/m/Popover",
+    "sap/m/Text"
+], (Controller, MessageToast, Popover, Text) => {
+    "use strict";
 
-     return Controller.extend("com.mycompany.myfirstui5app.controller.Main", {
-          onInit: function () {
-                console.log("Main Controller Initialized");
-          },
+    return Controller.extend("com.mycompany.myfirstui5app.controller.Main", {
+      onInit() {
+        console.log("Main Controller Initialized");
+      },
 
-          onButtonPress: function () {
-                MessageToast.show("Hello from the Controller!");
-          }
-     });
-});
+      onButtonPress: function () {
+        // Show a message toast
+        MessageToast.show("Button Pressed from my controller!");
+
+        // Create a new Popover
+        const oPopover = new Popover({
+          title: "My Popover",
+          content: [new Text({ text: "Hello, this is a popover from my controller!" })],
+          placement: "Auto"
+        });
+
+        // Open the Popover
+        oPopover.openBy(this.getView().byId("myButton"));
+      }
+
+    });
+  });
 ```
 
 #### **Key Points:**
 - **`sap.ui.define`**: Defines a module and its dependencies.
 - **`Controller.extend`**: Creates a new Controller.
 - **`onInit`**: Lifecycle hook for initialization.
-- **`onPress`**: Event handler for the button click.
+- **`onButtonPress`**: Event handler for the button click.
 
 💡 **Pro Tip:** Use `MessageToast` for quick feedback to users.
 
